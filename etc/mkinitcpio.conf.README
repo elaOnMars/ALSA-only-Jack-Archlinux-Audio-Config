@@ -1,0 +1,18 @@
+# After you have edited your kernel module files in /etc/mkinitcpio.d/ you need to tell mkinitcpio
+# that there are extra configuration files for Your kerlen images.
+
+# Add the following hook to the file '/etc/mkinitcpio.conf' if not present:
+
+   modconf
+   
+# Your mkinitcpio.conf has a section for module hooks. Search for 'HOOKS' and add
+# modconf to it like in this way (without the three dots ...):
+
+   HOOKS=(base udev ... modconf block ... keyboard fsck)
+
+# Now you can rebuild your kernel images. In my case I use Linux-Zen as a realtime system.
+# Therefore I need to rebuild the kernel images with:
+
+   sudo mkinitcpio -p linux-zen
+   
+# The kernel images are saved in /boot.
