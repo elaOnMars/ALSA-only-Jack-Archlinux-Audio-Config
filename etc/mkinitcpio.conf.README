@@ -10,9 +10,16 @@
 
    HOOKS=(base udev ... modconf block ... keyboard fsck)
 
-# Now you can rebuild your kernel images. In my case I use Linux-Zen as a realtime system.
-# Therefore I need to rebuild the kernel images with:
+# It is not need to create a kernel image. Just use the module load feature of your kernel.
+# If you get errors you may change the linux kernel variant to a realtime kernel.
 
-   sudo mkinitcpio -p linux-zen
+# Create a config file in /etc/modprobe.d/ and create a correspnding
+#   conf file in /etc/modules-load-d/ with the parameters of the module.
+
+
+# Example for a loopback audio device (if you don't have PCM sound)
+   edit /etc/modprobe.d/snd-aloop.conf if present.
    
-# The kernel images are saved in /boot.
+   write only 'snd-aloop' into the file. That's all.   
+  
+  
