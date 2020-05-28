@@ -1,0 +1,61 @@
+Einstellungen:
+=============
+
+Parameter:
+----------
+Treiber: alsa -> Echtzeit
+Abtastrate: 48000
+Frames/Periode: 128     (use higher values for HDA Intel)
+Perioden/Puffer: 3
+
+MIDI-Treiber: keiner
+Latenz: 16 ms
+
+
+Advanced:
+---------
+Server-Päfix: jackd
+Name: (default)
+
+Soft-Modus: AUS  (wenn man den Soft-Modus aktiviert, bricht die Aufnahme auch bei XRUNs nicht ab. 
+                   Praktikabel, wenn man nur nebenbei etwas aufnehmen möchte und wo die Audioqualität vernachlässigbar ist.)
+
+Priorität: (default)
+Maximaler Port: 256
+Timeout (ms): 500
+
+Audio: Duplex
+Dither: Keiner
+Ausgabegerät: hw:VSL      (wenn man unterwegs arbeitet, manuell auf die interne Soundkarte, z. B. 'PCH' umstellen und jack neustarten)
+Eingangsgerät: hw: VSL
+Kanäle I/O: (default) (Default)
+Latenz I/O: (default) (default)
+
+Startverzögerung: 2 s
+
+
+Optionen:
+---------
+Skript nach Start ausfähren: /usr/local/bin/loop2jack
+
+
+Anzeige:
+--------
+Enable JACK client/port pretty-names (metadata)      (damit man sieht, was womit verbunden ist)
+
+
+
+Verschiedenes:
+--------------
+JACK-Server bei Anwendungsstart starten: AN
+Confirm server shutdown and/or restart: AN
+Minimiert im Benachrichtigungsfeld starten: AN
+
+Konfiguration für JACK-Server speichern unter: .jackdrc
+Unterstützung für ALSA-Sequencer aktivieren: AN
+
+Replace Connections with Graph button: AN
+
+
+# Was genau passiert, wenn 'D-Bus-Schnittstelle aktivieren', 'Enable JACK D-Bus interface'
+# oder 'Nur eine Anwendungsinstanz zulassen' aktiviert ist, habe ich noch nicht herausgefunden...
