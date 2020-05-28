@@ -15,7 +15,9 @@ PRO:
     the audio device in qjackctl and restart the jack server.
   
 CONTRA:
-  - Microphone of the laptop cannot be used with this configuration. Maybe it is a very small config error.
+  - Really bad: Line-In instruments can be connected via qjackctl to capture 1 to 4. But the sound is not captured by 
+    recording software like ardour or jack_capture. Probably I missed something in the setup...
+  - Bad: Microphone of the laptop cannot be used with this configuration. Maybe it is a very small config error.
     But I haven't read Mark's tutorial completely... :)
   - Increasing or lowering the audio volume with the master 'PCM' is not possible. I need to choose the corresponding
     audio hardware like 'VSL' or 'PCH' in my volume mixer first.
