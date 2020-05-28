@@ -7,8 +7,8 @@
 
 
 # loop client creation
-/usr/bin/alsa_out -j ploop -dploop -q 1 2>&1 1> /dev/null &
-/usr/bin/alsa_in -j  cloop -dcloop -q 1 2>&1 1> /dev/null &
+/usr/bin/alsa_out -d hw:Loopback -j ploop -dploop -q 1 2>&1 1> /dev/null &
+/usr/bin/alsa_in  -d hw:Loopback -j cloop -dcloop -q 1 2>&1 1> /dev/null &
 
 # give it some time before connecting to system ports
 sleep 1
