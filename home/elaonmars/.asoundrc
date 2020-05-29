@@ -3,7 +3,12 @@
 #
 # Use it with a Python script you may find in the home directory.
 #
-# .asoundrc friendly grepped from this site: http://gamesplusone.com/alsa_to_jack.html
+# Put this .asoundrc into your home directory.
+# It should function also with pulseaudio.
+#
+# You need the Python script which I friendly fetched from http://gamesplusone.com/alsa_to_jack.html which was 
+# originally hosted on the WineHQ Sound wiki page http://wiki.winehq.org/Sound
+# and written and developed by falkTX of KXStudio http://kxstudio.sourceforge.net/Main_Page .
 
 # ------------------------------------------------------
 # playback device
