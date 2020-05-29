@@ -5,8 +5,11 @@ As addition to the setup by markc I like to add the setup of falkTX of KXStudio
 
 I grepped the .asoundrc and the corresponding Python script from this site:
 
-    http://gamesplusone.com/alsa_to_jack.html
-    
+It should function also with pulseaudio.
+
+Script and .asoundrc friendly fetched from http://gamesplusone.com/alsa_to_jack.html which was 
+originally hosted on the WineHQ Sound wiki page http://wiki.winehq.org/Sound
+and written and developed by falkTX of KXStudio http://kxstudio.sourceforge.net/Main_Page .
     
 The actual status of this configuration of this repository branch is as follows:
 
