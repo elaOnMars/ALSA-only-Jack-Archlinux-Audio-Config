@@ -1,80 +1,60 @@
-# Set default audio card by it's name:
-# aplay -l | awk -F \: '/,/{print $2}' | awk '{print $1}' | uniq
-# or
-# cat /proc/asound/card*/id
-
-# The 'pcm' options affect which card and device will be 
-# used for audio playback while the 'ctl' option affects which 
-# card is used by control utilities like alsamixer. 
-
-
-
-# Check CARD with:
-  #  aplay -L | grep :CARD
-
-
-# Definde Laptop Audio as default
-pcm.!default {
-    type plug
-    slave.pcm "dmixer"
-}
-
-# Dmix only makes sense for the ALSA playback PCM because you can have more than one client 
-# outputting to ALSA at the same time
-pcm.dmixer {
-    type dmix
-    ipc_key 1024
-    slave {
-        pcm "hw:PCH"
-        period_time 0
-        period_size 512
-        buffer_size 4096
-        rate 48000
-    }
-}
-
-ctl.!default {
-    type hw           
-    card PCH
-}
-
-
-
-
-# ------------------------------
-# https://alsa.opensrc.org/Jack_and_Loopback_device_as_Alsa-to-Jack_bridge#id09
-# playback PCM device: using loopback subdevice 0,0
-pcm.amix {
-  type dmix
-  ipc_key 219345
-  slave.pcm "hw:Loopback,0,0"
-}
-
-# capture PCM device: using loopback subdevice 0,1
-pcm.asnoop {
-  type dsnoop
-  ipc_key 219346
-  slave.pcm "hw:Loopback,0,1"
-}
-
-# duplex device combining our PCM devices defined above
-pcm.aduplex {
-  type asym
-  playback.pcm "amix"
-  capture.pcm "asnoop"
-}
+# ------------------------------------------------------
+# Custom asoundrc file for use with snd-aloop and JACK
+#
+# Use it with a Python script you may find in the home directory.
+#
+# .asoundrc friendly grepped from this site: http://gamesplusone.com/alsa_to_jack.html
 
 # ------------------------------------------------------
-# for jack alsa_in and alsa_out: looped-back signal at other ends
-pcm.ploop {
-  type plug
-  slave.pcm "hw:Loopback,1,1"
+# playback device
+pcm.aloopPlayback {
+  type dmix
+  ipc_key 1
+  ipc_key_add_uid true
+  slave {
+    pcm "hw:Loopback,0,0"
+    format S32_LE
+    rate {
+      @func igetenv
+      vars [ JACK_SAMPLE_RATE ]
+      default 44100
+    }
+    period_size {
+      @func igetenv
+      vars [ JACK_PERIOD_SIZE ]
+      default 1024
+    }
+    buffer_size 4096
+  }
 }
 
-pcm.cloop {
+# capture device
+pcm.aloopCapture {
   type dsnoop
-  ipc_key 219348
-  slave.pcm "hw:Loopback,1,0"
+  ipc_key 2
+  ipc_key_add_uid true
+  slave {
+    pcm "hw:Loopback,0,1"
+    format S32_LE
+    rate {
+      @func igetenv
+      vars [ JACK_SAMPLE_RATE ]
+      default 44100
+    }
+    period_size {
+      @func igetenv
+      vars [ JACK_PERIOD_SIZE ]
+      default 1024
+    }
+    buffer_size 4096
+  }
+}
+
+# duplex device
+pcm.aloopDuplex {
+  type asym
+  playback.pcm "aloopPlayback"
+  capture.pcm "aloopCapture"
 }
 
 # ------------------------------------------------------
@@ -82,6 +62,37 @@ pcm.cloop {
 
 pcm.!default {
   type plug
-  slave.pcm "aduplex"
+  slave.pcm "aloopDuplex"
 }
 
+# ------------------------------------------------------
+# alsa_in -j alsa_in -dcloop -q 1
+pcm.cloop {
+  type dsnoop
+  ipc_key 3
+  ipc_key_add_uid true
+  slave {
+    pcm "hw:Loopback,1,0"
+    format S32_LE
+    rate {
+      @func igetenv
+      vars [ JACK_SAMPLE_RATE ]
+      default 44100
+    }
+    period_size {
+      @func igetenv
+      vars [ JACK_PERIOD_SIZE ]
+      default 1024
+    }
+    buffer_size 4096
+  }
+}
+
+# ------------------------------------------------------
+# alsa_out -j alsa_out -dploop -q 1
+pcm.ploop {
+  type plug
+  slave {
+    pcm "hw:Loopback,1,1"
+  }
+}
