@@ -1,0 +1,24 @@
+# After you have edited your kernel module files in /etc/mkinitcpio.d/ you need to tell mkinitcpio
+# that there are extra configuration files for Your kerlen images.
+
+# Add the following hook to the file '/etc/mkinitcpio.conf' if not present:
+
+   modconf
+   
+# Your mkinitcpio.conf has a section for module hooks. Search for 'HOOKS' and add
+# modconf to it like in this way (without the three dots ...):
+
+   HOOKS=(base udev ... modconf block ... keyboard fsck)
+
+# It is not need to create a kernel image. Just use the module load feature of your kernel.
+# If you get errors you may change the linux kernel variant to a realtime kernel.
+
+# Create a config file in /etc/modprobe.d/ and create a correspnding
+#   conf file in /etc/modules-load-d/ with the parameters of the module.
+
+
+# Example for a loopback audio device (if you don't have PCM sound)
+   edit /etc/modprobe.d/snd-aloop.conf if present.
+   
+   write only 'snd-aloop' into the file. That's all.   
+  
