@@ -1,9 +1,11 @@
-# ALSA-only-Jack-Archlinux-Audio-Config
+# ALSA-2-Jack-Archlinux-Audio-Config
 Here I like to share my realtime audio configuration on a (pulseaudio-free) Archlinux system. I use a Lenovo laptop with Intel chipset and a Presonus AudioBox VSL. My configuration is not perfect and lacks some functions. But this is due to some missing configurations. Actually I have a (partly) functional Alsa-Jack-Loopback-System which also works in the garden where I do not have the USB audiobox.  
 
-My personal (and unfinished) ALSA-to-Jack-Bridge configuration is based on the great tutorial of markc:
+As addition to the setup by markc I like to add the setup of falkTX of KXStudio
 
-    https://alsa.opensrc.org/Jack_and_Loopback_device_as_Alsa-to-Jack_bridge
+I grepped the .asoundrc and the corresponding Python script from this site:
+
+    http://gamesplusone.com/alsa_to_jack.html
     
     
 The actual status of this configuration of this repository branch is as follows:
@@ -19,3 +21,7 @@ CONTRA:
     But I haven't read Mark's tutorial completely... :)
   - Increasing or lowering the audio volume with the master 'PCM' is not possible. I need to choose the corresponding
     audio hardware like 'VSL' or 'PCH' in my volume mixer first.
+      
+        A reason could be the snd-aloop.conf file of markc. I'll need to check it out some time. 
+        
+        You are welcome to give me some hints. :)
