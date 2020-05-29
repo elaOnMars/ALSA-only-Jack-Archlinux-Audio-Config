@@ -6,7 +6,7 @@ My personal (and unfinished) ALSA-to-Jack-Bridge configuration is based on the g
     https://alsa.opensrc.org/Jack_and_Loopback_device_as_Alsa-to-Jack_bridge
     
     
-The actual status of my configuration is:
+The actual status of this configuration of this repository branch is as follows:
 
 PRO:
   - Realtime audio via loopback audio devices WITHOUT using the physical jack of the laptop.
