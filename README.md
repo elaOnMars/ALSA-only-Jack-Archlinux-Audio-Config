@@ -1,5 +1,5 @@
 # ALSA-only-Jack-Archlinux-Audio-Config
-Here I like to share my realtime audio configuration on a (pulseaudio-free) Archlinux system. I use a Lenovo laptop with Intel chipset and a Presonus AudioBox VSL. My configuration is not perfect and lacks some functions. But this is due to some missing configurations. Actually I have a fully functional Alsa-Jack-Loopback-System which also works in the garden where I do not have the USB audiobox.  
+Here I like to share my realtime audio configuration on a (pulseaudio-free) Archlinux system. I use a Lenovo laptop with Intel chipset and a Presonus AudioBox VSL. My configuration is not perfect and lacks some functions. But this is due to some missing configurations. Actually I have a (partly) functional Alsa-Jack-Loopback-System which also works in the garden where I do not have the USB audiobox.  
 
 My personal (and unfinished) ALSA-to-Jack-Bridge configuration is based on the great tutorial of markc:
 
