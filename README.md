@@ -44,7 +44,7 @@ Reboot and check that the module was loaded with _modinfo -p snd_.
 
 __3. ... __
 
-...
+```...```
 
 ---
 
