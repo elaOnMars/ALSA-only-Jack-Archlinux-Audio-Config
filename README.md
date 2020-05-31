@@ -1,36 +1,54 @@
-# ALSA-only-Jack-Archlinux-Audio-Config
+# In progress :: A new sound setup (multiple sound devices) from scratch 
+### with ALSA, Loopback devices, USB Audio, built-in HDA Audio and Jack
 
-Here I like to share my realtime audio configuration on a (pulseaudio-free) Archlinux system. I use a Lenovo laptop with Intel chipset and a Presonus AudioBox VSL. My configuration is not perfect and lacks some functions. But this is due to some missing configurations. Actually I have a (partly) functional Alsa-Jack-Loopback-System which also works in the garden where I do not have the USB audiobox.  
+In contrast to the other branches this branch describes the steps to set up a working and 
+solid ALSA based sound system from scratch
+
+## Which capatibilies my sound system should have?
+* Switching easily between on-board sound and the external USB sound device.
+* Hearing sound in every (non-ALSA) capable webrowser.
+* Using the microphone in most applications. In parallel I like to mix different sound channels with recording software like Ardour. That means: I like to fetch every real sound which are on several loopback devices.
 
 
-My personal (and unfinished) ALSA-to-Jack-Bridge configuration is based on the great tutorial of markc: https://alsa.opensrc.org/Jack_and_Loopback_device_as_Alsa-to-Jack_bridge   
-     
-As addition to the setup by markc I like to add the setup of falkTX of KXStudio (https://github.com/falkTX).
-falkTX's script and .asoundrc friendly fetched from http://gamesplusone.com/alsa_to_jack.html which was 
-originally hosted on the WineHQ Sound wiki page http://wiki.winehq.org/Sound
-and written and developed by falkTX of KXStudio http://kxstudio.sourceforge.net/Main_Page .
+## Sound devices:
+* HDA Intel (model ALC269-dmic)
+* PreSonus AudioBox 44VSL
+* ALSA Loopback devices
 
 ---
 
-## This repository hosts TWO GitHub branches:
+# Steps to set up a sound system:
+
+__1. Define the order of the sound cards loaded globally__
+
+Creata a module file _snd.conf_ in _/etc/modprobe.d/_ with the following content:
+```
+# 1. HDA Intel (PCH) - index=0    # change the model to your sound card model or to _model=auto_.
+# 2. USB AUdio (VSL) - index=1
+# 3. Loopback - index=2
+
+options snd slots=snd-hda-intel index=0 snoop=1 model=alc269-dmic,slots=snd-usb-audio index=1,slots=snd-aloop index=2
+```
+Hint: You can define in your _~/.asoundrc_ which card shall be used as the default sound card.
+
+__2. Load the module _snd_ at startup__
+
+Create a file _snd.conf_ in _/etc/modules-load.de/_ with the following word:
+
+```
+snd
+```
+Save and close the file.
+
+Reboot and check that the module was loaded with _modinfo -p snd_.
+
+__3. ... __
+
+...
+
+---
+
+## This repository hosts different GitHub branches:
 * One with the 'falkTX' version and 
 * the other with the 'markc' version. 
-
----
-
-The actual status of this configuration of this repository branch is as follows:
-
-PRO:
-  - Realtime audio via loopback audio devices WITHOUT using the physical jack of the laptop.
-  - A script helps to initialize the loopback devices in qjackctl's graph editor automatically.
-  - When turning off the external audio box I can use the built-in audio hardware nearly on-the-fly. I only need to change
-    the audio device in qjackctl and restart the jack server.
-  
-CONTRA:
-  - Bad: Microphone of the laptop cannot be used with this configuration. Maybe it is a very small config error.
-    But I haven't read Mark's tutorial completely... :)
-  - Increasing or lowering the audio volume with the master 'PCM' is not possible. I need to choose the corresponding
-    audio hardware like 'VSL' or 'PCH' in my volume mixer first. 
-    A reason could be the snd-aloop.conf file of markc. I'll need to figure it out some time.
-        
-        You are welcome to give me some hints how I can get my onboard microphone back :)
+* snd-aloop_in-progress: In progress :: A new sound setup (multiple sound devices) from scratch
