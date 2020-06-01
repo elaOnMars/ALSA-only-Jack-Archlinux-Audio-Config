@@ -52,7 +52,7 @@ Create a module file _snd.conf_ in _/etc/modprobe.d/_ with the following content
 
 options snd slots=snd-hda-intel index=0 snoop=1 model=alc269-dmic,slots=snd-usb-audio index=1,slots=snd-aloop index=2
 ```
-Hint: In your ~/.asoundrc you can define which sound card shall be used as the default sound card.
+__Hint: In your ~/.asoundrc you can define which sound card shall be used as the default sound card.__
 
 Now tell the system that it should load the individual _snd_ module at startup. Create a file _snd.conf_ in _/etc/modules-load.de/_ with the following word:
 
@@ -62,12 +62,16 @@ snd
 Save and close the file.
 
 
+__Hint: With this configuration most webbrowsers will not produce any sound. Be patient. we will fix this issue later. :)__
+
+
 
 __Important: Reboot now and check, that the _snd_ module was loaded amd the built-in sound card has _index 0_. 
 Use the follwing command:__
 ```
 _modinfo -p snd
 ```
+
 
 
 ## 3. Sound- and recording-check
@@ -225,6 +229,46 @@ Your default sound card should play the sample sounds yet.
 If you don't hear anything please start with the configuration again. Also check if the file you are referencing to is valid.
 
 
+
+## 5. Fixing sound issues in webrowsers
+
+At this point all my sound cards play audio files and record my voice. That's good. But there is at least one big problem: Webrowsers like __Firefox__ nor __Chromium__ will not play any sound.
+
+After searching the web I've found the solution described by the wiki written by the __gentoo linux__ people (Source [gt]):
+
+> Some system motherboards (i.e. Asus Z87-EXPERT) cause Card 0 to be a MID device instead of a PCM device. The same driver module snd_hda_intel is used for both the MID and PCM cards on this motherboard. For some reason Firefox HTML 5 requires Card 0 of the snd_hda_intel no matter how you change it with asoundrc. You can make flash work using the asoundrc file, but HTML 5 audio is silent. 
+
+> You must remap the PCM device in Linux as card 0 and remove the changes to asoundrc that were added to make Flash work. This wiki page indicates that you should compile the snd_hda_intel driver into the kernel. Using this configuration you must remap the card 0 and card 1 devices using boot parameters instead of a /etc/modprobe.d/alsa.conf file. For example the following kernel command line option will swap the MID and PCM card indicies so that the default card 0 is the PCM card:
+
+> snd-hda-intel.index=1,0
+
+
+Let's test it and change the configurtaion of the on-board sound card.
+
+Change into the directory where the hardware based configuration file lives:
+
+```
+cd /etc/modprobe.de/
+```
+
+Open the configuration file _/etc/modprobe.d/snd.conf_ and change the index value of __snd-hda-intel__ from __index=0__ to __index=1,0__. The configuration file _/etc/modprobe.de/snd.conf_ has now this content:
+
+```
+# Get your device names with:
+#    aplay -l
+
+# 1. HDA Intel (PCH) - index=0    # change the model to your sound card model or to _model=auto_.
+# 2. USB AUdio (VSL) - index=1
+# 3. Loopback - index=2
+
+# IMPORTANT: Modern webrowsers interpretes index=0 as a MID device and not as a PCM playback device.
+#            Trick the browsers by changing 'snd-hda-intel index=0...' to 
+#            'snd-hda-intel index=1,0...'. Reboot and your webrowser should now produce sound.
+
+options snd slots=snd-hda-intel index=1,0 snoop=1 model=alc269-dmic,slots=snd-usb-audio index=1,slots=snd-aloop index=2
+```
+
+
 ```...```
 
 ---
@@ -240,3 +284,4 @@ If you don't hear anything please start with the configuration again. Also check
 * wiki.gentoo.org/wiki/ALSA#Configuration
 * wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Including_configuration_files
 * fossies.org/linux/alsa-lib/doc/asoundrc.txt
+[gt] Gentoo's ALSA wiki: https://wiki.gentoo.org/wiki/ALSA#HTML5_does_not_play_in_a_browser
