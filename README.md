@@ -17,7 +17,17 @@ solid ALSA based sound system from scratch
 
 ---
 
-# Steps to set up a sound system:
+# Steps to set up a sound system
+
+Before you start using your sound devices you should mute the built-in microphone of your __playback__ device - not of the __capture__ devices! Otherwise you'll have feedback noise. You can hear it if you tap with your finger on your headphones.
+Use __alsamixer__ for this task.
+
+Normally your built-in sound card should be visible as the first device in __alsamixer__.
+
+* Open __alsamixer__ and press _F3_. Decrease the volume of the microphone to _zero_ or _mute_ it by pressing the button _m_.
+* Change to the capture device by pressing the button _F4_. Check that the _capture_ device is _ON_. Switching ON/OFF by pressing the space bar.
+
+
 
 ## 1. Start with a unchanged ALSA configuration
 
