@@ -24,8 +24,8 @@ Use __alsamixer__ for this task.
 
 Normally your built-in sound card should be visible as the first device in __alsamixer__.
 
-* Open __alsamixer__ and press _F3_. Decrease the volume of the microphone to _zero_ or _mute_ it by pressing the button _m_.
-* Change to the capture device by pressing the button _F4_. Check that the _capture_ device is _ON_. Switching ON/OFF by pressing the space bar.
+* Open __alsamixer__ and press __F3__. Decrease the volume of the microphone to __zero__ or __mute__ it by pressing the button __m__.
+* Change to the __capture__ device by pressing the button __F4__. Check that the __capture__ device is __ON__. Switching ON/OFF by pressing the __space bar__.
 
 
 
