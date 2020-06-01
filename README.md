@@ -29,7 +29,11 @@ alsactl init
 __2. Define the order of the sound cards loaded globally__
 
 Creata a module file _snd.conf_ in _/etc/modprobe.d/_ with the following content:
+
 ```
+# Get your device names with:
+#    aplay -l
+
 # 1. HDA Intel (PCH) - index=0    # change the model to your sound card model or to _model=auto_.
 # 2. USB AUdio (VSL) - index=1
 # 3. Loopback - index=2
