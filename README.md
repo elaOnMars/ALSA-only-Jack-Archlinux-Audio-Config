@@ -167,6 +167,53 @@ aplay /usr/share/sounds/alsa/*
 
 Your external USB audio device should now playback the sample sounds perfectly.
 
+Now you should copy your configuration file into the folder with working configuration files:
+
+```
+cp -a $HOME/asoundrc-debugging/.asoundrc_default-card $HOME/asoundrc-sorking/
+```
+
+
+## 4. Including configuration files
+
+From this point on you should __include__ ALSA configuration files instead of filling them up with more configurations.
+
+The positive effect of this is, that you know exactly which part of your _.asoundrc_ file is doing what.
+
+Let us create a new .asoundrc configuration file which refers to the configuration file created in the steps before:
+
+Change directory:
+```
+cd ~/asoundrc-debug
+```
+Create a new configuration file _.asoundrc_default-card-by-referencing_ with the follwing content:
+```
+</home/elaonmars/asoundrc-debug/.asoundrc-01_default-card-and-device_ALSA.org.gentoo.wiki>
+```
+__Hint: '$HOME' or '~' instead of '/home/elaonmars' won't work.__
+
+Change into your $HOME directory and remove the symbolic link to _.asoundrc_ with:
+
+```
+rm .asoundrc
+```
+
+Now reload your ALSA configuration by soft linking to the new config file:
+
+```
+ln -s debug/.asoundrc_default-card-by-referencing .asoundrc
+```
+
+To test if everything is working just do a sound-check again:
+
+```
+aplay /usr/share/sounds/alsa/*
+```
+
+Your default sound card should play the sample sounds yet.
+
+If you don't hear anything please start with the configuration again. Also check if the file you are referencing to is valid.
+
 
 ```...```
 
@@ -181,3 +228,5 @@ Your external USB audio device should now playback the sample sounds perfectly.
 
 ## Helpful links:
 * wiki.gentoo.org/wiki/ALSA#Configuration
+* wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Including_configuration_files
+* fossies.org/linux/alsa-lib/doc/asoundrc.txt
