@@ -44,8 +44,6 @@ options snd slots=snd-hda-intel index=0 snoop=1 model=alc269-dmic,slots=snd-usb-
 ```
 Hint: In your ~/.asoundrc you can define which sound card shall be used as the default sound card.
 
-__Important: You must reboot your system now to take effect of your settings.__
-
 
 ## 3. Load the module _snd_ at startup
 
@@ -56,7 +54,14 @@ snd
 ```
 Save and close the file.
 
-Reboot and check that the module was loaded with _modinfo -p snd_.
+
+
+__Important: Reboot and check, that the _snd_ module was loaded amd the built-in sound card has _index 0_. 
+Use the follwing command:__
+```
+_modinfo -p snd
+```
+
 
 ## 4. Sound- and recording-check
 
