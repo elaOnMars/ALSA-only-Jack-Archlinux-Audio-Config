@@ -65,7 +65,7 @@ _modinfo -p snd
 Not all applications which can be used to play audio are "ALSA-friendly". Webrowsers like _Firefox_ or _Chromium_ will not work at this moment. But you can hear sound when usind "ALSA-friendly" players like ___aplay___ (sound) or ___mplayer___ (video).
 
 
-### 3.1 Sound-check of the on-board sound
+### 3.1 Sound-check of the on-board sound device
 
 We'll integrate the external sound device later by using the user's _.asoundrc_ file. But first we'll playing some sample sounds with "ALSA-friendly" applications. Open a terminal and enter the following:
 
@@ -76,7 +76,7 @@ aplay /usr/share/sounds/alsa/*
 If you can hear sound, than everything is okay and we can go further.
 
 
-### 3.2 Recording-check of the on-board sound
+### 3.2 Recording-check of the on-board sound device
 
 The default configuration of ALSA should allow you to record sound with the built-in microphone. 
 Test your capture device (built-in, not the USB device) with:
