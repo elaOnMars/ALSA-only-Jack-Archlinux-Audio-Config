@@ -106,7 +106,7 @@ To not accidentally overwrite a working _.asoundrc_ you should handle symbolic l
 Set-up your $HOME directory for ALSA-debugging:
 
 ```
-# change into the §HOME directory
+# change into the $HOME directory
 cd ~
 
 # create folders for ALSA-debugging
