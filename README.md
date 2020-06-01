@@ -274,8 +274,8 @@ options snd slots=snd-hda-intel index=1,0 snoop=1 model=alc269-dmic,slots=snd-us
 ---
 
 ## This repository hosts different GitHub branches:
-* One with the 'falkTX' version and 
-* the other with the 'markc' version. 
+* One with the 'falkTX' version and
+* the other with the 'markc' version.
 * snd-aloop_in-progress: In progress :: A new sound setup (multiple sound devices) from scratch
 
 ---
