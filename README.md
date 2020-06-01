@@ -28,6 +28,8 @@ alsactl init
 
 __2. Define the order of the sound cards loaded globally__
 
+The on-board sound card is used as the primary sound device.
+
 Creata a module file _snd.conf_ in _/etc/modprobe.d/_ with the following content:
 
 ```
@@ -40,7 +42,7 @@ Creata a module file _snd.conf_ in _/etc/modprobe.d/_ with the following content
 
 options snd slots=snd-hda-intel index=0 snoop=1 model=alc269-dmic,slots=snd-usb-audio index=1,slots=snd-aloop index=2
 ```
-Hint: You can define in your _~/.asoundrc_ which card shall be used as the default sound card.
+Hint: In your ~/.asoundrc you can define which sound card shall be used as the default sound card.
 
 
 __3. Load the module _snd_ at startup__
