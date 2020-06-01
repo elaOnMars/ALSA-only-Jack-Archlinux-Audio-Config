@@ -30,7 +30,7 @@ alsactl init
 
 The on-board sound card is used as the primary sound device.
 
-Creata a module file _snd.conf_ in _/etc/modprobe.d/_ with the following content:
+Create a module file _snd.conf_ in _/etc/modprobe.d/_ with the following content:
 
 ```
 # Get your device names with:
@@ -44,6 +44,8 @@ options snd slots=snd-hda-intel index=0 snoop=1 model=alc269-dmic,slots=snd-usb-
 ```
 Hint: In your ~/.asoundrc you can define which sound card shall be used as the default sound card.
 
+__Important: You must reboot your system now to take effect of your settings.__
+
 
 ## 3. Load the module _snd_ at startup
 
@@ -56,7 +58,7 @@ Save and close the file.
 
 Reboot and check that the module was loaded with _modinfo -p snd_.
 
-## 4. Sound-check
+## 4. Sound- and recording-check
 
 Not all applications which can be used to play audio are "ALSA-friendly". Webrowsers like _Firefox_ or _Chromium_ will not work at this moment. But you can hear sound when usind "ALSA-friendly" players like ___aplay___ (sound) or ___mplayer___ (video).
 
@@ -70,6 +72,17 @@ aplay /usr/share/sounds/alsa/*
 ```
 
 If you can hear sound, than everything is okay and we can go further.
+
+
+### 4.2 Recording-check of the on-board sound
+
+The default configuration of ALSA should allow you to record sound with the built-in microphone. 
+Test your capture device (built-in, not the USB device) with:
+
+```
+arecord -d 4 -f cd  test6.wav && aplay test6.wav
+```
+The parameter _-f cd_ records in CD quality.
 
 
 ### 4.2 Sound-check of the external USB audio device
