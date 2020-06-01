@@ -44,10 +44,7 @@ options snd slots=snd-hda-intel index=0 snoop=1 model=alc269-dmic,slots=snd-usb-
 ```
 Hint: In your ~/.asoundrc you can define which sound card shall be used as the default sound card.
 
-
-## 3. Load the module _snd_ at startup
-
-Create a file _snd.conf_ in _/etc/modules-load.de/_ with the following word:
+Now tell the system that it should load the individual _snd_ module at startup. Create a file _snd.conf_ in _/etc/modules-load.de/_ with the following word:
 
 ```
 snd
@@ -56,19 +53,19 @@ Save and close the file.
 
 
 
-__Important: Reboot and check, that the _snd_ module was loaded amd the built-in sound card has _index 0_. 
+__Important: Reboot now and check, that the _snd_ module was loaded amd the built-in sound card has _index 0_. 
 Use the follwing command:__
 ```
 _modinfo -p snd
 ```
 
 
-## 4. Sound- and recording-check
+## 3. Sound- and recording-check
 
 Not all applications which can be used to play audio are "ALSA-friendly". Webrowsers like _Firefox_ or _Chromium_ will not work at this moment. But you can hear sound when usind "ALSA-friendly" players like ___aplay___ (sound) or ___mplayer___ (video).
 
 
-### 4.1 Sound-check of the on-board sound
+### 3.1 Sound-check of the on-board sound
 
 We'll integrate the external sound device later by using the user's _.asoundrc_ file. But first we'll playing some sample sounds with "ALSA-friendly" applications. Open a terminal and enter the following:
 
@@ -79,7 +76,7 @@ aplay /usr/share/sounds/alsa/*
 If you can hear sound, than everything is okay and we can go further.
 
 
-### 4.2 Recording-check of the on-board sound
+### 3.2 Recording-check of the on-board sound
 
 The default configuration of ALSA should allow you to record sound with the built-in microphone. 
 Test your capture device (built-in, not the USB device) with:
@@ -90,7 +87,7 @@ arecord -d 4 -f cd  test6.wav && aplay test6.wav
 The parameter _-f cd_ records in CD quality.
 
 
-### 4.2 Sound-check of the external USB audio device
+### 3.3 Sound-check of the external USB audio device
 
 First power-on your USB audio devices and identify the index and the pretty names of your 
 external sound devices. You should avoid using indices in ALSA configurations. 
