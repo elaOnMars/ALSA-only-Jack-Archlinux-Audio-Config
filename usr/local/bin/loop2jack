@@ -18,11 +18,7 @@ sleep 1
 jack_connect cloop:capture_1 system:playback_1
 jack_connect cloop:capture_2 system:playback_2
 
-# AudioBox system microphone (Microphone analog input 1) to "ploop" ports
-jack_connect system:capture_1 ploop:playback_1
-jack_connect system:capture_1 ploop:playback_2
-
-# AudioBox system Line-In (Sound analog input 3, 4) to "ploop" ports
+# AudioBox system Mic-Line-In (Sound analog input 3, 4) to "ploop" ports
 jack_connect system:capture_3 ploop:playback_1
 jack_connect system:capture_4 ploop:playback_2
 
