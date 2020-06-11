@@ -37,6 +37,8 @@ CONTRA:
     
     ![alsamixer: Intel HDA (built-in)](alsamixer-capturesettings.png){:class="img-responsive"}
     
+    <img src="./alsamixer-capturesettings.png" width="100">
+    
   - Recording of Raw data: The built-in capture device sends my voice perfectly to a video conference system in
     a webrowser. But I am unable to record my voice in  parallel with Ardour or similar. A connection 'system, capture' -->  
     'ardour - Line in' results in rawdata noise.
