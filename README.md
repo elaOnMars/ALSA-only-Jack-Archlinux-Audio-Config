@@ -24,6 +24,8 @@ The actual status of this configuration of this repository branch is as follows:
 PRO:
   - Realtime audio via loopback audio devices WITHOUT using the physical jack of the laptop.
   - A script helps to initialize the loopback devices in qjackctl's graph editor automatically.
+  ![qjackctl: Alsa-Jack-Loopback-Bridget](qjackctl-Loopback-connection.png)
+  
   - When turning off the external audio box I can use the built-in audio hardware nearly on-the-fly. I only need to change
     the audio device in qjackctl and restart the jack server.
   - Built-in microphone (Intel HDA PCH) works too, when configured in 'qjackctl' 
@@ -38,3 +40,6 @@ CONTRA:
     Maybe this can be solved by more Loopback devices and fine tuned connection scheme.
         
         You are welcome to give me some hints how I can get my onboard microphone back :)
+
+---
+
