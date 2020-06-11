@@ -1,4 +1,4 @@
-# Set default audio card by it's name:
+# Get default audio card by it's name:
 # aplay -l | awk -F \: '/,/{print $2}' | awk '{print $1}' | uniq
 # or
 # cat /proc/asound/card*/id
@@ -8,36 +8,8 @@
 # card is used by control utilities like alsamixer. 
 
 
-
 # Check CARD with:
   #  aplay -L | grep :CARD
-
-
-# Definde Laptop Audio as default
-pcm.!default {
-    type plug
-    slave.pcm "dmixer"
-}
-
-# Dmix only makes sense for the ALSA playback PCM because you can have more than one client 
-# outputting to ALSA at the same time
-pcm.dmixer {
-    type dmix
-    ipc_key 1024
-    slave {
-        pcm "hw:PCH"
-        period_time 0
-        period_size 512
-        buffer_size 4096
-        rate 48000
-    }
-}
-
-ctl.!default {
-    type hw           
-    card PCH
-}
-
 
 
 
