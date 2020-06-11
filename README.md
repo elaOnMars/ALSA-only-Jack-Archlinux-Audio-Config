@@ -49,3 +49,45 @@ CONTRA:
 
 ---
 
+This is my setup:
+
+## Sound device list
+```
+# aplay -l
+**** Liste der Hardware-Geräte (PLAYBACK) ****
+Karte 0: Loopback [Loopback], Gerät 0: Loopback PCM [Loopback PCM]
+  Sub-Geräte: 7/8
+  Sub-Gerät #0: subdevice #0
+  Sub-Gerät #1: subdevice #1
+  Sub-Gerät #2: subdevice #2
+  Sub-Gerät #3: subdevice #3
+  Sub-Gerät #4: subdevice #4
+  Sub-Gerät #5: subdevice #5
+  Sub-Gerät #6: subdevice #6
+  Sub-Gerät #7: subdevice #7
+Karte 0: Loopback [Loopback], Gerät 1: Loopback PCM [Loopback PCM]
+  Sub-Geräte: 7/8
+  Sub-Gerät #0: subdevice #0
+  Sub-Gerät #1: subdevice #1
+  Sub-Gerät #2: subdevice #2
+  Sub-Gerät #3: subdevice #3
+  Sub-Gerät #4: subdevice #4
+  Sub-Gerät #5: subdevice #5
+  Sub-Gerät #6: subdevice #6
+  Sub-Gerät #7: subdevice #7
+Karte 1: VSL [AudioBox 44 VSL], Gerät 0: USB Audio [USB Audio]
+  Sub-Geräte: 0/1
+  Sub-Gerät #0: subdevice #0
+Karte 2: PCH [HDA Intel PCH], Gerät 0: ALC269VC Analog [ALC269VC Analog]
+  Sub-Geräte: 1/1
+  Sub-Gerät #0: subdevice #0
+Karte 2: PCH [HDA Intel PCH], Gerät 3: HDMI 0 [HDMI 0]
+  Sub-Geräte: 1/1
+  Sub-Gerät #0: subdevice #0
+Karte 2: PCH [HDA Intel PCH], Gerät 7: HDMI 1 [HDMI 1]
+  Sub-Geräte: 1/1
+  Sub-Gerät #0: subdevice #0
+Karte 2: PCH [HDA Intel PCH], Gerät 8: HDMI 2 [HDMI 2]
+  Sub-Geräte: 1/1
+  Sub-Gerät #0: subdevice #0
+```
