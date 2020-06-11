@@ -28,7 +28,7 @@ PRO:
     <img src="./qjackctl-Loopback-connection.png" width=80%>
   
   - When turning off the external audio box I can use the built-in audio hardware nearly on-the-fly. I only need to change
-    the audio device in qjackctl and restart the jack server.
+    the audio device in qjackctl.
   - Built-in microphone (Intel HDA PCH) works too, when configured in 'qjackctl' 
     (see -> qjackctl- configuration.README_in_German)
   
