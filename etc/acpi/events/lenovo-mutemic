@@ -2,6 +2,8 @@
 # default management device in /etc/asound.conf
 # when you like to use the toggle mic button on your laptop.
 
+# You may change the 'Mic Mute' option in 'alsamixer' to 'Follow Capture'.
+
 
 #   ctl.!default {
 #       type hw           
