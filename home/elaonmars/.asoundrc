@@ -1,4 +1,5 @@
-# Get default audio card by it's name:
+
+# Set default audio card by it's name:
 # aplay -l | awk -F \: '/,/{print $2}' | awk '{print $1}' | uniq
 # or
 # cat /proc/asound/card*/id
@@ -8,32 +9,103 @@
 # card is used by control utilities like alsamixer. 
 
 
+
 # Check CARD with:
   #  aplay -L | grep :CARD
 
 
 
+
 # ------------------------------
 # https://alsa.opensrc.org/Jack_and_Loopback_device_as_Alsa-to-Jack_bridge#id09
+# https://alsa.opensrc.org/Dmix
 # playback PCM device: using loopback subdevice 0,0
 pcm.amix {
   type dmix
   ipc_key 219345
-  slave.pcm "hw:Loopback,0,0"
+#   ipc_key_add_uid false   # let multiple users share
+#   ipc_perm 0666           # IPC permissions for multi-user sharing (octal, default 0600)
+  slave {
+    pcm "hw:Loopback,0,0"
+    period_time 0
+    period_size 512      # must be power of 2
+    buffer_size 4096     # must be power of 2
+    rate 48000
+    #rate 8000 # with rate 8000 you *will* hear,
+    # if ossmix is used :)
+  }
+  bindings {
+    0 0
+    1 1
+  }
 }
 
 # capture PCM device: using loopback subdevice 0,1
 pcm.asnoop {
   type dsnoop
   ipc_key 219346
-  slave.pcm "hw:Loopback,0,1"
+#   ipc_key_add_uid false   # let multiple users share
+#   ipc_perm 0666           # IPC permissions for multi-user sharing (octal, default 0600)
+  slave { 
+    pcm "hw:Loopback,0,1"
+    period_time 0
+    period_size 512      # must be power of 2
+    buffer_size 4096     # must be power of 2
+    rate 48000
+    #rate 8000 # with rate 8000 you *will* hear,
+    # if ossmix is used :)
+  }
+  bindings {
+    0 0
+    1 1
+  }
 }
+
+
+
+
+# pipe asnoop into the new ladspa device....
+
+# Delete everything above 50 Hz. (untested. But seems to work or has no hearable effect.)
+# https://alsa.opensrc.org/SurroundSound
+pcm.ice2_21cutoffsub {
+     type ladspa
+     slave.pcm    "asnoop"
+     path    "/usr/lib/ladspa"
+     plugins {
+          0 {
+               label lp4pole_fcrcia_oa
+               policy none
+               input.bindings.2 "Input";
+               output.bindings.2 "Output";
+               input {
+                    controls       [ 300 0 ]
+               }
+          }
+          1 {
+               label delay_0.01s
+               input.bindings.0 "Input";
+               output.bindings.0 "Output";
+               input {
+                    controls [ 0 1 ]
+               }
+          }
+     }
+}
+ 
+
+
+
+
+
+
 
 # duplex device combining our PCM devices defined above
 pcm.aduplex {
   type asym
   playback.pcm "amix"
-  capture.pcm "asnoop"
+#  capture.pcm "asnoop"
+  capture.pcm "ice2_21cutoffsub"       # captured from the new filter device
 }
 
 # ------------------------------------------------------
@@ -46,7 +118,21 @@ pcm.ploop {
 pcm.cloop {
   type dsnoop
   ipc_key 219348
-  slave.pcm "hw:Loopback,1,0"
+#   ipc_key_add_uid false   # let multiple users share
+#   ipc_perm 0666           # IPC permissions for multi-user sharing (octal, default 0600)
+  slave {
+    pcm "hw:Loopback,1,0"
+    period_time 0
+    period_size 512      # must be power of 2
+    buffer_size 4096     # must be power of 2
+    rate 48000
+    #rate 8000 # with rate 8000 you *will* hear,
+    # if ossmix is used :)
+  }
+  bindings {
+    0 0
+    1 1
+  }
 }
 
 # ------------------------------------------------------
@@ -55,5 +141,9 @@ pcm.cloop {
 pcm.!default {
   type plug
   slave.pcm "aduplex"
+  # A hint is required for listing the device in some GUIs, e.g. Phonon configuration.
+  hint {
+    show on
+    description "My aduplex PCM"
+  }
 }
-
