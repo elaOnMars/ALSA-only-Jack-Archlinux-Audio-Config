@@ -5,7 +5,7 @@ Parameter:
 ----------
 Treiber: alsa -> Echtzeit
 Abtastrate: 48000
-Frames/Periode: 128     (use higher values for HDA Intel)
+Frames/Periode: 64     (use higher values for HDA Intel)
 Perioden/Puffer: 3
 
 MIDI-Treiber: keiner
