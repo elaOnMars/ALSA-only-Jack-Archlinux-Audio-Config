@@ -21,14 +21,15 @@ Soft-Modus: AUS  (wenn man den Soft-Modus aktiviert, bricht die Aufnahme auch be
                    Praktikabel, wenn man nur nebenbei etwas aufnehmen möchte und wo die Audioqualität vernachlässigbar ist.)
 
 Priorität: (default)
-Maximaler Port: 256
+Maximaler Port: 256      # Keine Ahnung, wofür das gut ist.
 Timeout (ms): 500
 
 Audio: Duplex
 Dither: Keiner
 Ausgabegerät: hw:VSL      (wenn man unterwegs arbeitet, manuell auf die interne Soundkarte, z. B. 'PCH' umstellen)
 Eingangsgerät: hw: VSL    (wenn man in Videokonferenzen das Laptop-Mikro nutzen möchte, auf 'PCH' umstellen)
-                             !! qjackctl muss nicht neugestartet werden.
+                             !! qjackctl muss nicht neugestartet werden. Es kann bei Soundproblemen aber helfen,
+                             jack neuzustarten.
 Kanäle I/O: (default) (Default)
 Latenz I/O: (default) (default)
 
@@ -42,18 +43,18 @@ Skript nach Start ausfähren: /usr/local/bin/loop2jack
 
 Anzeige:
 --------
-Enable JACK client/port pretty-names (metadata)      (damit man sieht, was womit verbunden ist)
+Enable JACK client/port pretty-names (metadata)     #(damit man sieht, was womit verbunden ist)
 
 
 
 Verschiedenes:
 --------------
-JACK-Server bei Anwendungsstart starten: AN
+JACK-Server bei Anwendungsstart starten: AUS       # Kontrolliert starten ist sicherer.
 Confirm server shutdown and/or restart: AN
 Minimiert im Benachrichtigungsfeld starten: AN
 
 Konfiguration für JACK-Server speichern unter: .jackdrc
-Unterstützung für ALSA-Sequencer aktivieren: AN
+Unterstützung für ALSA-Sequencer aktivieren: AN    # Wenn man MIDI-Geräte hat
 
 Replace Connections with Graph button: AN
 
