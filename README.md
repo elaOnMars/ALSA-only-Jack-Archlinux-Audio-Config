@@ -31,7 +31,7 @@ PRO:
   
   - When turning off the external audio box I can use the built-in audio hardware nearly on-the-fly. I only need to change
     the audio device in qjackctl.
-  - Built-in microphone (Intel HDA PCH) works too, when configured in 'qjackctl' 
+  - Built-in microphone (Intel HDA PCH) works too, when configured correctly in 'qjackctl' 
     (see -> qjackctl- configuration.README_in_German)
   
 CONTRA:
@@ -39,13 +39,6 @@ CONTRA:
     audio hardware like 'VSL' or 'PCH' separately.
     
     <img src="./alsamixer-capturesettings.png" width="80%">
-    
-  - Recording of Raw data: The built-in capture device sends my voice perfectly to a video conference system in
-    a webrowser. But I am unable to record my voice in  parallel with Ardour or similar. A connection 'system, capture' -->  
-    'ardour - Line in' results in rawdata noise.
-    Maybe this can be solved by more Loopback devices and fine tuned connection scheme.
-        
-        You are welcome to give me some hints how I can get my onboard microphone back :)
 
 ---
 
