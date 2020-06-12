@@ -1,0 +1,15 @@
+# IMPORTANT :: define the on-board sound device as 
+# default management device in /etc/asound.conf
+# when you like to use the toggle mic button on your laptop.
+
+
+#   ctl.!default {
+#       type hw           
+#       card PCH
+#   }
+
+# identify the name of the acpi event with 'acpi_listen'
+# Press the button and you'll see in the terminal the event handler.
+
+event=button/f20 F20 00000080 00000000 K
+action=/usr/bin/amixer sset 'Capture',0 toggle
