@@ -1,5 +1,5 @@
 
-# Set default audio card by it's name:
+# Set default audio card by it's name: 
 # aplay -l | awk -F \: '/,/{print $2}' | awk '{print $1}' | uniq
 # or
 # cat /proc/asound/card*/id
