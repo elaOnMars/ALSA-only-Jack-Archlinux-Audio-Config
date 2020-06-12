@@ -34,11 +34,13 @@ PRO:
   - Built-in microphone (Intel HDA PCH) works too, when configured correctly in 'qjackctl' 
     (see -> qjackctl- configuration.README_in_German)
   
-CONTRA:
+To Do:
   - There is no master 'Loopback' volume for increasing or lowering the audio volume. It needs to choose the corresponding
     audio hardware like 'VSL' or 'PCH' separately.
     
     <img src="./alsamixer-capturesettings.png" width="80%">
+    
+  - __!!! Sound volume and sound mute button on the laptop doesn't work anymore.__
 
 ---
 
