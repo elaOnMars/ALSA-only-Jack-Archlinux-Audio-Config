@@ -13,8 +13,8 @@ and written and developed by falkTX of KXStudio http://kxstudio.sourceforge.net/
 
 ## This repository hosts TWO GitHub branches:
 * One with the 'falkTX' version and 
-* the other with the 'markc' version. 
-* snd-aloop_in-progress: In progress :: A new sound setup (multiple sound devices) from scratch
+* One configuration with the 'markc' version. (default)
+* snd-aloop_in-progress: In progress :: A new sound setup (multiple sound devices) from scratch (don't use it at the moment)
 
 ---
 
