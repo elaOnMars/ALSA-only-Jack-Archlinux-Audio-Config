@@ -4,6 +4,14 @@
 In contrast to the other branches this branch describes the steps to set up a working and 
 solid ALSA based sound system from scratch
 
+---
+
+## This repository hosts different GitHub branches:
+* One with the 'falkTX' version and 
+* One configuration with the 'markc' version. (default)
+* snd-aloop_in-progress: In progress :: A new sound setup (multiple sound devices) from scratch (don't use it at the moment)
+
+
 ## Which capatibilies my sound system should have?
 * Switching easily between on-board sound and the external USB sound device.
 * Hearing sound in every (non-ALSA) capable webrowser.
@@ -14,6 +22,7 @@ solid ALSA based sound system from scratch
 * HDA Intel (model ALC269-dmic). Pretty name: __PCH__.
 * PreSonus AudioBox 44VSL. Pretty name: __VSL__.
 * ALSA Loopback devices. Pretty name: __Loopback__.
+
 
 ---
 
@@ -271,12 +280,6 @@ options snd slots=snd-hda-intel index=1,0 snoop=1 model=alc269-dmic,slots=snd-us
 
 ```...```
 
----
-
-## This repository hosts different GitHub branches:
-* One with the 'falkTX' version and
-* the other with the 'markc' version.
-* snd-aloop_in-progress: In progress :: A new sound setup (multiple sound devices) from scratch
 
 ---
 
