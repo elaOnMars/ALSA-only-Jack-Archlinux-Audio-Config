@@ -35,8 +35,8 @@ PRO:
     (see -> qjackctl- configuration.README_in_German)
   
 To Do:
-  - There is no master 'Loopback' volume for increasing or lowering the audio volume. It needs to choose the corresponding
-    audio hardware like 'VSL' or 'PCH' separately.
+  - Due to /etc/asound.conf there is no working master 'Loopback' volume for increasing or lowering the audio volume (PCM).
+    It needs to choose the corresponding audio hardware like 'VSL' or 'PCH' separately. But also if I would uncomment /tc/asound.conf lowering or increasing the PCM volume with the buttons don't work.
     
     <img src="./alsamixer-capturesettings.png" width="80%">
 
