@@ -15,3 +15,5 @@
 
 event=button/f20 F20 00000080 00000000 K
 action=/usr/bin/amixer sset 'Capture',0 toggle
+
+# Open alsamixer and set "Mic Mute" to "On", if you like to be warned when your microphone captures sound.
