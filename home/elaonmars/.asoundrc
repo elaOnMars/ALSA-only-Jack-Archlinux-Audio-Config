@@ -138,12 +138,30 @@ pcm.cloop {
 # ------------------------------------------------------
 # default device
 
-pcm.!default {
+#pcm.!default {
+#  type plug
+#  slave.pcm "aduplex"
+#  # A hint is required for listing the device in some GUIs, e.g. Phonon configuration.
+#  hint {
+#    show on
+#    description "My aduplex PCM"
+#  }
+#}
+
+
+
+# Some html5 browsers (i.e. Firefox 30; Chrome 38) will fail to open the pcm.!default device for audio playback. 
+# This can be fixed by using pcm.card0 instead:
+# Geteste Nov. 2020 mit Cisco Webex Meeting. Das Audio klappt nämlich sonst nicht. Mikro ja.
+
+# default device
+pcm.card0 {
   type plug
   slave.pcm "aduplex"
-  # A hint is required for listing the device in some GUIs, e.g. Phonon configuration.
+ # A hint is required for listing the device in some GUIs, e.g. Phonon con>
   hint {
     show on
     description "My aduplex PCM"
   }
 }
+
